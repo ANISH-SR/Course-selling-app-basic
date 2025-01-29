@@ -69,7 +69,7 @@ app.post("/purchases", (req,res)=>{
 
 })
 
-app.get("/courses", (req,res)=>{
+app.get("/preview", (req,res)=>{
 
 })
 
