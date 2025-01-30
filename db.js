@@ -1,4 +1,7 @@
 const mongoose = require("mongoose");
+
+await mongoose.connect(process.env.URI);
+
 const Schema = mongoose.Schema;
 const ObjectId = mongoose.Types.ObjectId;
 

@@ -41,25 +41,53 @@ This repository contains the source code for a basic course selling application.
     npm install
     ```
 
+## Setting Up Environment Variables
+
+1. Copy the `.env.example` file to `.env`:
+   ```bash
+   cp .env.example .env
+   ```
+2. Open the `.env` file and update the following values:
+   - `MONGODB_URI`: Your MongoDB connection string
+   - `JWT_SECRET`: Secret key for user authentication
+   - `ADMIN_JWT_SECRET`: Secret key for admin authentication
+   - `PORT`: Server port (default: 3000)
+
 ## Usage
 
 1. Start the development server:
     ```bash
     npm start
     ```
-2. Open your browser and navigate to `http://localhost:3000`.
 
-## File Structure
+## Project Structure
 
 ```
-├── auth.js          # Authentication middleware and JWT configuration
-├── db.js            # Database models and schema definitions
-├── index.js         # Main application entry point
-├── routes/          # API route handlers
-│   ├── admin.js     # Admin routes (signup, signin, course management)
-│   ├── course.js    # Course routes (purchase, preview)
-│   └── user.js      # User routes (signup, signin, purchases)
-└── public/          # Static files 
+.
+├── node_modules/    # Project dependencies
+├── src/
+│   ├── models/     # Database models
+│   │   ├── user.js
+│   │   ├── admin.js
+│   │   ├── course.js
+│   │   └── purchase.js
+│   ├── routes/     # API route handlers
+│   │   ├── admin.js
+│   │   ├── course.js
+│   │   └── user.js
+│   ├── middleware/ # Custom middleware
+│   │   ├── auth.js
+│   │   └── validation.js
+│   ├── config/     # Configuration files
+│   │   └── db.js
+│   └── utils/      # Utility functions
+│       └── helpers.js
+├── public/         # Static files
+├── .env            # Environment variables
+├── .env.example    # Environment template
+├── .gitignore     # Git ignore rules
+├── package.json    # Project metadata
+└── README.md      # Project documentation
 ```
 
 ## Database Models

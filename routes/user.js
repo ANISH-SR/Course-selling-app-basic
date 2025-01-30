@@ -1,5 +1,5 @@
 const { Router } = require("express");
-
+const { z } = require("zod");
 const userRouter = Router();
 
 userRouter.post("/signup", async (req,res)=>{

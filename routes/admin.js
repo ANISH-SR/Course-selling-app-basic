@@ -1,6 +1,7 @@
 const { Router } = require("express");
-
+const { z } = require("zod");
 const adminRouter = Router();
+const { AdminModel } = require("../db");
 
 adminRouter.post("/signup", async (req,res)=>{
     // const email = req.body.email;

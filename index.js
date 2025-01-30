@@ -1,8 +1,8 @@
+require('dotenv').config();
 const express = require("express");
 const bcrypt = require("bcrypt");
-const { z } = require("zod");
 const jwt = require("jsonwebtoken");
-// const mongoose = require("mongoose");
+const mongoose = require("mongoose");
 
 const { UserModel, TodoModel } = require("./db");
 const { auth, JWT_SECRET } = require("./auth"); 
@@ -18,4 +18,4 @@ app.use("/course", courseRouter);
 app.use("/admin", adminRouter);
 
 
-app.listen(3000);
+app.listen(process.env.PORT);
