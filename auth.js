@@ -1,11 +1,11 @@
-const jwt = require("jsonwebtoken");
-const JWT_SECRET = "drake";
+// const jwt = require("jsonwebtoken");
+// const JWT_SECRET = "drake";
 
-function auth(){
+// function auth(){
 
-}
+// }
 
-module.exports = {
-    auth,
-    JWT_SECRET
-};
+// module.exports = {
+//     auth,
+//     JWT_SECRET
+// };
