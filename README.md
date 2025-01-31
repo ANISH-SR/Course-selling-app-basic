@@ -63,31 +63,23 @@ This repository contains the source code for a basic course selling application.
 ## Project Structure
 
 ```
-.
-├── node_modules/    # Project dependencies
-├── src/
-│   ├── models/     # Database models
-│   │   ├── user.js
-│   │   ├── admin.js
-│   │   ├── course.js
-│   │   └── purchase.js
-│   ├── routes/     # API route handlers
-│   │   ├── admin.js
-│   │   ├── course.js
-│   │   └── user.js
-│   ├── middleware/ # Custom middleware
-│   │   ├── auth.js
-│   │   └── validation.js
-│   ├── config/     # Configuration files
-│   │   └── db.js
-│   └── utils/      # Utility functions
-│       └── helpers.js
-├── public/         # Static files
-├── .env            # Environment variables
-├── .env.example    # Environment template
-├── .gitignore     # Git ignore rules
-├── package.json    # Project metadata
-└── README.md      # Project documentation
+COURSE-SELLING-APP-BASIC/
+├── middleware/           # Custom middleware
+│   ├── admin.js
+│   └── user.js
+├── public/               # Static files
+│   └── index.html
+├── routes/               # Route handlers
+│   ├── admin.js
+│   ├── course.js
+│   └── user.js
+├── config/               # Configuration
+│   └── db.js
+├── .gitignore           # Includes node_modules/, .env, etc.
+├── package.json
+├── package-lock.json
+├── README.md
+└── index.js             # Main entry point
 ```
 
 ## Database Models

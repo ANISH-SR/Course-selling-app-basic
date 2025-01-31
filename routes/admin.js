@@ -1,7 +1,7 @@
 const { Router } = require("express");
 const { z } = require("zod");
 const adminRouter = Router();
-const { AdminModel } = require("../db");
+const { AdminModel } = require("../config/db");
 
 adminRouter.post("/signup", async (req,res)=>{
     // const email = req.body.email;
@@ -61,15 +61,15 @@ adminRouter.post("/signin", (req,res)=>{
      
 })
 
-adminRouter.post("/create", (req, res)=>{
+adminRouter.post("/", (req, res)=>{
 
 })
 
-adminRouter.put("/course", (req, res)=>{
+adminRouter.put("/", (req, res)=>{
 
 })
 
-adminRouter.get("/course/bulk", (req, res)=>{
+adminRouter.get("/bulk", (req, res)=>{
 
 });
 
