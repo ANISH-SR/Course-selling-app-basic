@@ -7,12 +7,13 @@ const adminRouter = Router();
 const { AdminModel } = require("../config/db");
 
 adminRouter.post("/signup", async (req,res)=>{
-    const email = req.body.email;
-    const password = req.body.password;
+    const { email, password, firstName, lastName } = req.body;
 
     const requiredBody = z.object({
         email: z.string().email().min(3).max(30),
         password: z.string().min(3).max(100),
+        firstName: z.string(),
+        lastName: z.string()
     });
     const parsedwithSuccess = requiredBody.safeParse(req.body);
     if(!parsedwithSuccess.success){
@@ -45,8 +46,7 @@ adminRouter.post("/signup", async (req,res)=>{
 })
 
 adminRouter.post("/signin", async (req,res)=>{
-    const email = req.body.email;
-    const password = req.body.password;
+    const { email, password, firstName, lastName } = req.body;
 
     const userfound = await AdminModel.findOne({
         email

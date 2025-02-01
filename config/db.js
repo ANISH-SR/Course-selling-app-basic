@@ -4,18 +4,18 @@ const Schema = mongoose.Schema;
 const ObjectId = mongoose.Types.ObjectId;
 
 const User = new Schema({
-    id: ObjectId,
     email: {type: String, unique: true},
     password: String,
-    name: String
+    firstName: String,
+    lastName: String
 });
 
 const Admin = new Schema({
     id: ObjectId,
     email: {type: String, unique: true},
     password: String,
-    name: String
-
+    firstName: String,
+    lastName: String
 });
 
 const Purchases = new Schema({
