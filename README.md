@@ -55,7 +55,12 @@ This repository contains the source code for a basic course selling application.
 
 ## Usage
 
-1. Start the development server:
+1. Start the development server with nodemon:
+    ```bash
+    npm run dev
+    ```
+
+2. Start the production server:
     ```bash
     npm start
     ```
