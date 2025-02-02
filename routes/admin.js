@@ -27,13 +27,15 @@ adminRouter.post("/signup", async (req,res)=>{
     try{
         await AdminModel.create({
             email: email,
-            password: hashedpassword
+            password: hashedpassword,
+            firstName: firstName,
+            lastName: lastName
         })
     }
     catch(e){
         errorThrown = true;
         res.json({
-            message: "User already exists"
+            message: "admin already exists"
         })
         return
     }
@@ -46,26 +48,28 @@ adminRouter.post("/signup", async (req,res)=>{
 })
 
 adminRouter.post("/signin", async (req,res)=>{
-    const { email, password, firstName, lastName } = req.body;
+    const { email, password } = req.body;
 
-    const userfound = await AdminModel.findOne({
-        email
-    })
+    const admin = await AdminModel.findOne({
+        email: email
+    });
 
-    if(!userfound){
+    if(!admin){
         res.status(403).json({
-            message: "User doesn't exist"
+            message: "admin doesn't exist"
         })
+        return
     }
 
-    const passmatch = await bcrypt.compare(password, userfound.password);
+    const passmatch = await bcrypt.compare(password, admin.password);
 
     if(passmatch){
         const token = jwt.sign({
-            id: userfound._id.toString()  
+            id: admin._id.toString()  
         }, process.env.ADMIN_JWT_SECRET);
         res.json({
-            token: token
+            token: token,
+            message: "You are signed in!"
         })
     }
     else{
@@ -73,11 +77,6 @@ adminRouter.post("/signin", async (req,res)=>{
             message: "Incorrect credentials"
         })
     }
-
-    res.json({
-        message: "You are signed in!"
-    })
-     
 })
 
 adminRouter.post("/", (req, res)=>{

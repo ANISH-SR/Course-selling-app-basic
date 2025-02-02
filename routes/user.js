@@ -31,7 +31,8 @@ userRouter.post("/signup", async (req,res)=>{
      await UserModel.create({
         email: email,
         password: hashedpassword,
-        name: name
+        firstName: firstName,
+        lastName: lastName
     });
     }catch(e){
         errorthrown = true;
@@ -52,22 +53,22 @@ userRouter.post("/signup", async (req,res)=>{
 
 userRouter.post("/signin", async (req,res)=>{
 
-    const { email, password, firstName, lastName } = req.body;
-    const userfound = await AdminModel.findOne({
+    const { email, password } = req.body;
+    const user = await AdminModel.findOne({
         email
     })
 
-    if(!userfound){
+    if(!user){
         res.status(403).json({
             message: "User doesn't exist"
         })
     }
 
-    const passmatch = await bcrypt.compare(password, userfound.password);
+    const passmatch = await bcrypt.compare(password, user.password);
 
     if(passmatch){
         const token = jwt.sign({
-            id: userfound._id.toString()  
+            id: user._id.toString()  
         }, process.env.JWT_SECRET);
         res.json({
             token: token
