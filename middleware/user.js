@@ -1,11 +1,12 @@
 require('dotenv').config();
 const jwt = require("jsonwebtoken");
 
-function auth(req, res, next){
+function userMiddleware(req, res, next){
     const token = req.headers.token;
     const decodednfo = jwt.verify(token, process.env.JWT_SECRET);
 
     if(decodednfo){
+        req.userId = decodednfo.id;                   
         next();
     }
     else{
@@ -17,5 +18,5 @@ function auth(req, res, next){
 } 
 
 module.exports = {
-    auth    
+    userMiddleware
 }
