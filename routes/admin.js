@@ -16,6 +16,7 @@ adminRouter.post("/signup", async (req,res)=>{
         firstName: z.string(),
         lastName: z.string()
     });
+
     const parsedwithSuccess = requiredBody.safeParse(req.body);
     if(!parsedwithSuccess.success){
         res.json({
@@ -63,7 +64,7 @@ adminRouter.post("/signin", async (req,res)=>{
     }
 
     const passmatch = await bcrypt.compare(password, admin.password);
-
+    
     if(passmatch){
         const token = jwt.sign({
             id: admin._id.toString()  
@@ -80,7 +81,7 @@ adminRouter.post("/signin", async (req,res)=>{
     }
 })
 
-adminRouter.post("/", adminMiddleware, async(req, res)=>{
+adminRouter.post("/create-course", adminMiddleware, async(req, res)=>{
     const adminId = req.userId;
     const {title, description, imageUrl, price} = req.body;
 
@@ -94,7 +95,7 @@ adminRouter.post("/", adminMiddleware, async(req, res)=>{
     })
 })
 
-adminRouter.put("/", adminMiddleware, async (req, res)=>{
+adminRouter.put("/update-course", adminMiddleware, async (req, res)=>{
     const adminId = req.userId;
     const {title, description, imageUrl, price, courseId } = req.body;
 
