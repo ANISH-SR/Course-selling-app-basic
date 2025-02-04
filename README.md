@@ -30,7 +30,7 @@ This repository contains the source code for a basic course selling application.
 
 1. Clone the repository:
     ```bash
-    git clone https://github.com/yourusername/course-selling-app-basic.git
+    git clone https://github.com/ANISH-SR/course-selling-app-basic.git
     ```
 2. Navigate to the project directory:
     ```bash
