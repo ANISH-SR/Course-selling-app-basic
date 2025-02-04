@@ -2,6 +2,7 @@ require('dotenv').config();
 const { Router } = require("express");
 const { z } = require("zod");
 const { UserModel } = require("../config/db");
+const { userMiddleware } = require('../middleware/user');
 const userRouter = Router();
 
 userRouter.post("/signup", async (req,res)=>{
@@ -86,8 +87,18 @@ userRouter.post("/signin", async (req,res)=>{
         
 })
 
-userRouter.get("/purchases", (req, res)=>{
+userRouter.get("/purchases", userMiddleware, async (req, res)=>{
+    //to see all of the purchases
+    const userId = req.userId;
+    
+    const purchases = await PurchasesModel.find({
+        userId,
 
+    })
+
+    res.json({
+        purchases
+    })
 })
 
 module.exports = {

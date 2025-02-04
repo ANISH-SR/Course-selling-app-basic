@@ -117,12 +117,11 @@ adminRouter.get("/bulk", adminMiddleware, async (req, res)=>{
     const adminId = req.userId;
     
     const course = await CoursesModel.find({
-        _id: courseId,
         creatorId: adminId
     });
 
     res.json({
-        message: "Course updated",
+        message: "Courses fetched",
         course
     });
 
