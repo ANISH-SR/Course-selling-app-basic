@@ -1,7 +1,7 @@
 require('dotenv').config();
 const { Router } = require("express");
 const { z } = require("zod");
-const { UserModel } = require("../config/db");
+const { UserModel, PurchasesModel, AdminModel } = require("../config/db");
 const { userMiddleware } = require('../middleware/user');
 const userRouter = Router();
 
@@ -93,11 +93,15 @@ userRouter.get("/purchases", userMiddleware, async (req, res)=>{
     
     const purchases = await PurchasesModel.find({
         userId,
+    })
 
+    const coursesData = await CoursesModel.find({
+        _id: { $in: purchases.map(x => x.courseId) }
     })
 
     res.json({
-        purchases
+        purchases,
+        coursesData
     })
 })
 
